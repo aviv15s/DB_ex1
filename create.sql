@@ -3,7 +3,7 @@ create table oscars(
   film_name varchar(100) NOT NULL,
   oscar_year INTEGER NOT NULL,
   studio varchar(100) NOT NULL,
-  award varchar(100) NOT NULL CHECK ( award="Winner" or award="Nominee" ),
+  award varchar(100) NOT NULL CHECK ( award='Winner' or award='Nominee' ),
   release_year INTEGER NOT NULL ,
   duration INTEGER NOT NULL ,
   imdb_rating FLOAT NOT NULL ,
