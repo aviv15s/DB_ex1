@@ -19,7 +19,7 @@ create table participants(
 create table genre_of_movie(
   genres varchar(100) NOT NULL,
   movie_name varchar(100) NOT NULL,
-  FOREIGN KEY (movie_name) REFERENCES oscars(movie_name),
+  FOREIGN KEY (movie_name) REFERENCES oscars(film_name),
   UNIQUE (genres, movie_name)
 );
 
@@ -27,19 +27,19 @@ create table director_of_movie(
   name varchar(100) NOT NULL,
   movie_name varchar(100) NOT NULL,
   FOREIGN KEY (name) REFERENCES participants(name),
-  FOREIGN KEY (movie_name) REFERENCES oscars(movie_name)
+  FOREIGN KEY (movie_name) REFERENCES oscars(film_name)
 );
 
 create table actor_in_movie(
   name varchar(100) NOT NULL,
   movie_name varchar(100) NOT NULL,
   FOREIGN KEY (name) REFERENCES participants(name),
-  FOREIGN KEY (movie_name) REFERENCES oscars(movie_name)
+  FOREIGN KEY (movie_name) REFERENCES oscars(film_name)
 );
 
 create table author_of_movie(
   name varchar(100) NOT NULL,
   movie_name varchar(100) NOT NULL,
   FOREIGN KEY (name) REFERENCES participants(name),
-  FOREIGN KEY (movie_name) REFERENCES oscars(movie_name)
+  FOREIGN KEY (movie_name) REFERENCES oscars(film_name)
 );
