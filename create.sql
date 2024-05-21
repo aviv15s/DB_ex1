@@ -13,7 +13,7 @@ create table oscars(
 );
 
 create table participants(
-  name varchar(100) PRIMARY KEY,
+  name varchar(100) PRIMARY KEY
 );
 
 create table genre_of_movie(
