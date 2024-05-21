@@ -1,6 +1,6 @@
 create table oscars(
   id INTEGER PRIMARY KEY,
-  film_name varchar(100) NOT NULL,
+  film_name varchar(100) NOT NULL UNIQUE ,
   oscar_year INTEGER NOT NULL,
   studio varchar(100) NOT NULL,
   award varchar(100) NOT NULL CHECK ( award='Winner' or award='Nominee' ),
