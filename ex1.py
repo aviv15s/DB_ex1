@@ -37,7 +37,6 @@ def process_file():
                 # add directors, actors and authors
                 # assume film name is not null, only check if actor/director/author name is null
                 seen_names = set()
-
                 for name in authors:
                     if name != "" and name not in seen_names:
                         authors_outwriter.writerow([name, filmID])

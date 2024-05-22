@@ -1,5 +1,5 @@
 create table oscars(
-  filmId INTEGER PRIMARY KEY,
+  filmId varchar(100) PRIMARY KEY,
   film_name varchar(100) UNIQUE NOT NULL,
   oscar_year INTEGER NOT NULL,
   studio varchar(100) NOT NULL,
