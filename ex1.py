@@ -26,9 +26,9 @@ def process_file():
         with zf.open('oscars.csv', 'r') as infile:
             reader = csv.reader(TextIOWrapper(infile, 'utf-8'))
             for row in reader:
-                id, film_name, oscar_year, studio, award, release, length, genres, IMDB_rating, IMDB_votes, rating, directors, authors, actors, filmID = row
+                _, film_name, oscar_year, studio, award, release, length, genres, IMDB_rating, IMDB_votes, rating, directors, authors, actors, filmID = row
                 # create new movie entry
-                oscars_outwriter.writerow([id, film_name, oscar_year, studio, award, release, length, IMDB_rating, IMDB_votes, rating, filmID])
+                oscars_outwriter.writerow([filmID, film_name, oscar_year, studio, award, release, length, IMDB_rating, IMDB_votes, rating])
 
                 authors = split_list_value(authors)
                 actors = split_list_value(actors)
@@ -40,24 +40,24 @@ def process_file():
 
                 for name in authors:
                     if name != "" and name not in seen_names:
-                        authors_outwriter.writerow([name, film_name])
+                        authors_outwriter.writerow([name, filmID])
                         participants_outwriter.writerow([name])
                         seen_names.add(name)
                 for name in directors:
                     if name != "" and name not in seen_names:
-                        directors_outwriter.writerow([name, film_name])
+                        directors_outwriter.writerow([name, filmID])
                         participants_outwriter.writerow([name])
                         seen_names.add(name)
                 for name in actors:
                     if name != "" and name not in seen_names:
-                        actors_outwriter.writerow([name, film_name])
+                        actors_outwriter.writerow([name, filmID])
                         participants_outwriter.writerow([name])
                         seen_names.add(name)
 
                 # add genres
                 genres = split_list_value(genres)
                 for g in genres:
-                    genre_of_movie_outwriter.writerow([g, film_name])
+                    genre_of_movie_outwriter.writerow([g, filmID])
 
     actors_outfile.close()
     directors_outfile.close()
@@ -68,7 +68,7 @@ def process_file():
 
 # return the list of all tables
 def get_names():
-    return ["actor_in_movie", "author_of_movie", "director_of_movie", "genre_of_movie"]
+    return ["oscars", "participants", "actor_in_movie", "author_of_movie", "director_of_movie", "genre_of_movie"]
 
 
 def split_list_value(list_value):

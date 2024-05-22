@@ -1,6 +1,6 @@
 create table oscars(
-  id INTEGER PRIMARY KEY,
-  film_name varchar(100) UNIQUE,
+  filmId INTEGER PRIMARY KEY,
+  film_name varchar(100) UNIQUE NOT NULL,
   oscar_year INTEGER NOT NULL,
   studio varchar(100) NOT NULL,
   award varchar(100) NOT NULL CHECK ( award='Winner' or award='Nominee' ),
@@ -9,7 +9,6 @@ create table oscars(
   imdb_rating FLOAT NOT NULL ,
   imdb_votes INTEGER NOT NULL ,
   content_rating varchar(100),
-  filmId INTEGER NOT NULL UNIQUE
 );
 
 create table participants(
@@ -18,28 +17,28 @@ create table participants(
 
 create table genre_of_movie(
   genres varchar(100) NOT NULL,
-  movie_name varchar(100) NOT NULL,
-  FOREIGN KEY (movie_name) REFERENCES oscars(film_name),
-  UNIQUE (genres, movie_name)
+  filmId varchar(100) NOT NULL,
+  FOREIGN KEY (filmId) REFERENCES oscars(filmId),
+  UNIQUE (genres, filmId)
 );
 
 create table director_of_movie(
   name varchar(100) NOT NULL,
-  movie_name varchar(100) NOT NULL,
+  filmId varchar(100) NOT NULL,
   FOREIGN KEY (name) REFERENCES participants(name),
-  FOREIGN KEY (movie_name) REFERENCES oscars(film_name)
+  FOREIGN KEY (filmId) REFERENCES oscars(filmId)
 );
 
 create table actor_in_movie(
   name varchar(100) NOT NULL,
-  movie_name varchar(100) NOT NULL,
+  filmId varchar(100) NOT NULL,
   FOREIGN KEY (name) REFERENCES participants(name),
-  FOREIGN KEY (movie_name) REFERENCES oscars(film_name)
+  FOREIGN KEY (filmId) REFERENCES oscars(filmId)
 );
 
 create table author_of_movie(
   name varchar(100) NOT NULL,
-  movie_name varchar(100) NOT NULL,
+  filmId varchar(100) NOT NULL,
   FOREIGN KEY (name) REFERENCES participants(name),
-  FOREIGN KEY (movie_name) REFERENCES oscars(film_name)
+  FOREIGN KEY (filmId) REFERENCES oscars(filmId)
 );
