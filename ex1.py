@@ -25,6 +25,8 @@ def process_file():
     with ZipFile('oscars.zip') as zf:
         with zf.open('oscars.csv', 'r') as infile:
             reader = csv.reader(TextIOWrapper(infile, 'utf-8'))
+            seen_names = set()
+
             for row in reader:
                 _, film_name, oscar_year, studio, award, release, length, genres, IMDB_rating, IMDB_votes, rating, directors, authors, actors, filmID = row
                 # create new movie entry
@@ -36,7 +38,6 @@ def process_file():
 
                 # add directors, actors and authors
                 # assume film name is not null, only check if actor/director/author name is null
-                seen_names = set()
                 for name in authors:
                     if name != "" and name not in seen_names:
                         authors_outwriter.writerow([name, filmID])
