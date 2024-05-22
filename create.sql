@@ -10,7 +10,6 @@ create table oscars(
   imdb_votes INTEGER NOT NULL ,
   content_rating varchar(100),
   filmId INTEGER NOT NULL UNIQUE,
-  UNIQUE(film_name)
 );
 
 create table participants(
