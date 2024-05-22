@@ -8,7 +8,7 @@ create table oscars(
   duration INTEGER NOT NULL ,
   imdb_rating FLOAT NOT NULL ,
   imdb_votes INTEGER NOT NULL ,
-  content_rating varchar(100),
+  content_rating varchar(100)
 );
 
 create table participants(
